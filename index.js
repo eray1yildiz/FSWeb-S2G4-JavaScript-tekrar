@@ -147,6 +147,7 @@ siralisayilar = besyuzdenkucuksayilar.sort((a, b) => {
 console.log("sıralı Sayılar: ", siralisayilar);
 
 //3f çözümü
+
 let tekrarEdenSayİlarObj = {};
 sayilar.forEach(item => {
   if (tekrarEdenSayİlarObj[item] === undefined) {
@@ -157,7 +158,7 @@ sayilar.forEach(item => {
 });
 tekraredensayilar = [];
 for (let i in tekrarEdenSayİlarObj) {
-  if (tekrarEdenSayİlarObj[i] > 0) {
+  if (tekrarEdenSayİlarObj[i] > 1) {
     tekraredensayilar.push(
       `${i} sayısı ${tekrarEdenSayİlarObj[i]} kere tekrar edilmiştir`
     );
