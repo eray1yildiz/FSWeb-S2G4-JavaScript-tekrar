@@ -94,78 +94,67 @@ var ucetambolunenler,
   tekraredensayilar;
 
 //3a çözümü
-
-enkucuk = sayilar[0];
 enbuyuk = sayilar[0];
-for (let i = 0; i < sayilar.length; i++) {
-  if (sayilar[i] < enkucuk) {
-    enkucuk = sayilar[i];
-  }
-  if (sayilar[i] > enbuyuk) {
+enkucuk = sayilar[0];
+for (let i = 1; i < sayilar.length; i++) {
+  if (enbuyuk < sayilar[i]) {
     enbuyuk = sayilar[i];
   }
+  if (enkucuk > sayilar[i]) {
+    enkucuk = sayilar[i];
+  }
 }
-console.log("Dizideki en küçük sayı: ", enkucuk);
-console.log("Dizideki en büyük sayı: ", enbuyuk);
 
+console.log("enBuyuk Sayı: ", enbuyuk);
+console.log("enKucuk Sayı: ", enkucuk);
 // 3b çözümü:
-
 ucetambolunenler = [];
-sayilar.forEach(item => {
-  if (item % 3 == 0) {
-    ucetambolunenler.push(item);
+sayilar.forEach(sayi => {
+  if (sayi % 3 === 0) {
+    ucetambolunenler.push(sayi);
   }
 });
-console.log("3 e tam bölünenler:", ucetambolunenler);
+console.log("Üçe Tam Bölnenler: ", ucetambolunenler);
 
 //3c çözümü:
-
-ucebolunenlerintoplami = ucetambolunenler.reduce(
-  (total, item) => total + item,
-  0
-);
-
-console.log("3 e bölünenlerin toplamı", ucebolunenlerintoplami);
-
+let toplam = 0;
+ucebolunenlerintoplami = ucetambolunenler.reduce((toplam, sayi) => {
+  if (sayi % 3 === 0) {
+    return toplam + sayi;
+  }
+  return toplam;
+}, 0);
+console.log("Ucetambolunenler: ", toplam);
 //3d çözümü
-
 besyuzdenkucuksayilar = [];
-besyuzdenkucuksayilar = sayilar.filter(item => {
-  if (item < 500) {
-    return besyuzdenkucuksayilar;
+sayilar.find(sayi => {
+  if (sayi < 500) {
+    besyuzdenkucuksayilar.push(sayi);
   }
 });
-console.log("500 den küçük sayılar: ", besyuzdenkucuksayilar);
+console.log("besyuzdenkucuksayilar: ", besyuzdenkucuksayilar);
 
 //3e çözümü
-
 siralisayilar = [];
+siralisayilar = besyuzdenkucuksayilar.sort((a, b) => a - b);
 
-siralisayilar = besyuzdenkucuksayilar.sort((a, b) => {
-  return a - b;
-});
-console.log("sıralı Sayılar: ", siralisayilar);
+console.log("siralisayilar: ", siralisayilar);
 
 //3f çözümü
-
-let tekrarEdenSayİlarObj = {};
-sayilar.forEach(item => {
-  if (tekrarEdenSayİlarObj[item] === undefined) {
-    tekrarEdenSayİlarObj[item] = 1;
-  } else {
-    tekrarEdenSayİlarObj[item]++;
-  }
-});
 tekraredensayilar = [];
-for (let i in tekrarEdenSayİlarObj) {
-  if (tekrarEdenSayİlarObj[i] > 1) {
-    tekraredensayilar.push(
-      `${i} sayısı ${tekrarEdenSayİlarObj[i]} kere tekrar edilmiştir`
-    );
+let tekrarSayilari = {};
+sayilar.forEach(sayi => {
+  tekrarSayilari[sayi] = (tekrarSayilari[sayi] || 0) + 1;
+});
+for (const sayi in tekrarSayilari) {
+  const tekrarSayisi = tekrarSayilari[sayi];
+  if (tekrarSayisi > 1) {
+    const tekrarMesaji = `${sayi} sayısı ${tekrarSayisi} kere tekrar edilmiştir`;
+    tekraredensayilar.push(tekrarMesaji);
   }
 }
-
 console.log(tekraredensayilar);
+
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 function sa() {
   console.log("Kodlar çalışıyor");
